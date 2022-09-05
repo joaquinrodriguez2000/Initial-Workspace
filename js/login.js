@@ -17,3 +17,23 @@ document.getElementById("form-login").addEventListener('submit', function(evento
         alert('Campos de Usuario y/o Constraseña están vacíos');
     }
 })
+
+const inputEmail = document.getElementById("email")
+const buttonText = document.getElementById("submit")
+
+buttonText.addEventListener("click", (evt) => {
+    // Si tenemos texto ingresado en el email, lo guardamos en el localStorage
+    
+    // Solución:
+    if (inputEmail.value) { 
+    localStorage.setItem("text", inputEmail.value);
+    } else {
+    alert("Por favor, ingresa un texto");
+
+    }
+
+}); 
+
+
+
+
