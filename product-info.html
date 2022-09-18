@@ -31,16 +31,34 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
+            <!-- AGREGAR AL NAVBAR EL NOMBRE DE USUARIO A TODOS! -->
           </li>
         </ul>
       </div>
     </div>
   </nav>
   <main>
+    <div class="container" id="productInfo">
+    </div>
+    <div class="container" id="productComment">
+    </div>
+    <hr class="mb-4">
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+      <form id="comment">
+        <label for="myOpinion">Tu Opinión:</label>
+        <textarea id="myOpinion" value="" name="myOpinion"></textarea>
+        <br>
+        <br>
+        <label for="puntuacion">Puntuación:</label>
+        <select name="puntuacion" class="form-select custom-select d-block w-100" id="puntuacion" required>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      <input type="submit" id="enviarComentario"></input>
+      </form>
     </div>
   </main>
   <footer class="text-muted">
@@ -64,6 +82,20 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/product-info.js"></script>
+  <script>
+    function aplicarComentario() {
+      function opinionPersona(opinion, puntua){
+        this.opinion=opinion;
+        this.puntua=puntua;
+      }
+      var aplicarOpinion = document.getElementById("myOpinion")
+      var aplicarPuntua = document.getElementById("puntuacion")
+     // console.log(aplicarOpinion);
+      var comentarioPersona(aplicarOpinion, aplicarPuntua);
+      console.log(comentarioPersona)
+    }
+  </script>
 </body>
 
 </html>
+

@@ -1,6 +1,8 @@
 const PRODUCTS_API = `https://japceibal.github.io/emercado-api/cats_products/${localStorage.getItem("catID")}.json`
     // Hace que las funciones sean generales para todos los productos, no solo para los autos como en la entrega anterior
 
+
+
 const ORDER_ASC_BY_PRICE = "PriceAsc";
 const ORDER_DESC_BY_PRICE = "PriceDesc";
 const ORDER_BY_RELEVANCE = "Relevance";
@@ -18,27 +20,30 @@ function showProductsList() {
             ((maxPrice == undefined) || (maxPrice != undefined && parseInt(product.cost) <= maxPrice))){
 
         htmlContentToAppend += `
-        <div class="list-group-item list-group-item-action">
-            <div class="row">
-                <div class="col-3">
-                    <img src=` + product.image + ` alt="product image" class="img-thumbnail">
-                </div>
-                <div class="col">
-                    <div class="d-flex w-100 justify-content-between">
-                        <div class="mb-1">
-                        <h4>`+ product.name +` - `+product.currency +` `+ product.cost +` </h4> 
-                        <p> `+ product.description +`</p> 
+                <div onclick="setProdID(${product.id})" class="list-group-item list-group-item-action cursor-active">
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="${product.image}" alt="${product.description}" class="img-thumbnail">
                         </div>
-                        <small class="text-muted">` + product.soldCount + ` vendidos </small> 
+                        <div class="col">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h4 class="mb-1">${product.name} - ${product.currency} ${product.cost} </h4>
+                                <small class="text-muted">${product.soldCount} artículos</small>
+                            </div>
+                            <p class="mb-1">${product.description}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        `
+                `
         }
         document.getElementById("productslist").innerHTML = htmlContentToAppend; 
 
     }
+}
+
+function setProdID(id) {
+    localStorage.setItem("prodID", id);
+    window.location = "product-info.html"
 }
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -115,3 +120,12 @@ currentProductsArray = data.products;
     });
 
 });
+
+const PRODUCTS_ID = `https://japceibal.github.io/emercado-api/products/${localStorage.getItem("id")}.json`
+const productButton = document.getElementById("productslist")
+
+productButton.addEventListener("click", (evt) => {
+    localStorage.setItem(PRODUCTS_ID)
+    window.location.href = 'product-info.html'
+
+}); 
