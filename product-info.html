@@ -10,6 +10,7 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -46,6 +47,7 @@
     <div class="container">
       <form id="comment">
         <label for="myOpinion">Tu Opinión:</label>
+        <br>
         <textarea id="myOpinion" value="" name="myOpinion"></textarea>
         <br>
         <br>
@@ -59,6 +61,8 @@
         </select>
       <input type="submit" id="enviarComentario"></input>
       </form>
+    </div>
+    <div class="container" id="related-Product">
     </div>
   </main>
   <footer class="text-muted">
@@ -82,19 +86,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/product-info.js"></script>
-  <script>
-    function aplicarComentario() {
-      function opinionPersona(opinion, puntua){
-        this.opinion=opinion;
-        this.puntua=puntua;
-      }
-      var aplicarOpinion = document.getElementById("myOpinion")
-      var aplicarPuntua = document.getElementById("puntuacion")
-     // console.log(aplicarOpinion);
-      var comentarioPersona(aplicarOpinion, aplicarPuntua);
-      console.log(comentarioPersona)
-    }
-  </script>
+
 </body>
 
 </html>

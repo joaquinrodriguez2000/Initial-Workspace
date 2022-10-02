@@ -51,6 +51,28 @@ return response.json()
     .then (function(comment) {
         comentariosArray = comment;
         console.log(comment);
+
+        function showStars(rate){
+    
+            let roundNumber = Math.round(rate);
+            console.log(roundNumber);
+            if (roundNumber == 1)
+            return `
+            <span style="color:yellow">★</span><span style="color:grey">☆☆☆☆</span>
+            `
+            if (roundNumber ==2 )
+            return `
+            <span style="color:yellow">★★</span><span style="color:grey">☆☆☆</span>`
+            if (roundNumber ==3)
+            return `
+            <span style="color:yellow">★★★</span><span style="color:grey">☆☆</span>`
+            if (roundNumber == 4)
+            return `
+            <span style="color:yellow">★★★★</span><span style="color:grey">☆</span>`
+            if (roundNumber == 5)
+            return `
+            <span style="color:yellow">★★★★★</span><span style="color:grey"></span>`       
+            }
     
         for(let i = 0; i < comentariosArray.length; i++){
             let comentario = comentariosArray[i];
@@ -63,7 +85,7 @@ return response.json()
                 <div class="row">
                     <div class="col">
                         <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">${comentario.user} ${comentario.dateTime} ${comentario.score} </h4>
+                            <h4 class="mb-1">${comentario.user} ${comentario.dateTime} Puntaje: ${showStars(comentario.score)} </h4>
                         </div>
                         <p class="mb-1">${comentario.description}</p>
                     </div>
@@ -74,10 +96,10 @@ return response.json()
         
             document.getElementById("productComment").innerHTML += comentarioToAppend; 
         }
+
+        console.log(comentariosArray)
     
     }); 
-
-    console.log(comentariosArray);
 
     let nuevoComentario = []; 
     let botonEnviarComentario = document.getElementById("enviarComentario"); 
@@ -85,15 +107,7 @@ return response.json()
     botonEnviarComentario.addEventListener("click", function(evento) {
         let opinion = document.getElementById("myOpinion").value;
         let puntuacion = document.getElementById("puntuacion").value;
-        let newuser = JSON.parse(localStorage.getItem("text"));
-
-        // nuevoComentario.appendChild(user);
-        // nuevoComentario.appendChild(puntuacion);
-        // nuevoComentario.appendChild(opinion);
-
-        // nuevoComentario.push(user);
-        // nuevoComentario.push(puntuacion);
-        // nuevoComentario.push(opinion);
+        let newuser = localStorage.getItem("text");
 
         if (opinion) {
             evento.preventDefault();
@@ -103,16 +117,35 @@ return response.json()
                 score: puntuacion,
                 user: newuser
             }]);
-            // nuevoComentario.push(opinion);
-            // // nuevoComentario.push(user);
-            // nuevoComentario.push(puntuacion);
+
+            function showStars(rate){
+    
+                let roundNumber = Math.round(rate);
+                console.log(roundNumber);
+                if (roundNumber == 1)
+                return `
+                <span style="color:yellow">★</span><span style="color:grey">☆☆☆☆</span>
+                `
+                if (roundNumber ==2 )
+                return `
+                <span style="color:yellow">★★</span><span style="color:grey">☆☆☆</span>`
+                if (roundNumber ==3)
+                return `
+                <span style="color:yellow">★★★</span><span style="color:grey">☆☆</span>`
+                if (roundNumber == 4)
+                return `
+                <span style="color:yellow">★★★★</span><span style="color:grey">☆</span>`
+                if (roundNumber == 5)
+                return `
+                <span style="color:yellow">★★★★★</span><span style="color:grey"></span>`       
+                }
 
             document.getElementById("productComment").innerHTML += `
             <div class="list-group-item list-group-item-action">
                     <div class="row">
                         <div class="col">
                             <div class="d-flex w-100 justify-content-between">
-                               <h4 class="mb-1">${newuser} ${puntuacion}</h4>
+                               <h4 class="mb-1">${newuser} Puntaje: ${showStars(puntuacion)}</h4>
                             </div>
                             <p class="mb-1">${opinion}</p>
                         </div>
@@ -125,30 +158,3 @@ return response.json()
     });
 
 });
-
-            // <div class="list-group-item list-group-item-action">
-            //         <div class="row">
-            //             <div class="col">
-            //                 <div class="d-flex w-100 justify-content-between">
-            //                     <h4 class="mb-1">${user} ${puntuacion} </h4>
-            //                 </div>
-            //                 <p class="mb-1">${opinion}</p>
-            //             </div>
-            //         </div>
-            //     </div>
-
-// función en base del score te ponga la cantidad de estrellas correspondientes
-
-// function puntuacion() {
-//     let puntaje = comentario.score[i];
-
-//     for (let i = 0; i < puntaje.length; i++){
-//         if (i <= puntaje ){
-//             <span class="fa fa-star checked"></span>
-//         }else{
-//             <span class="fa fa-star"></span>
-//         }
-//     };
-// }
-
-// console.log(puntaje);
