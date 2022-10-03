@@ -2,6 +2,12 @@ const PRODUCT_INFO_API = `https://japceibal.github.io/emercado-api/products/${lo
 //  URL de la información de los productos, de forma general para todos. 
 const PRODUCT_INFO_COMMENTS_API = `https://japceibal.github.io/emercado-api/products_comments/${localStorage.getItem("prodID")}.json`;
 
+
+function setProdID(id) {
+    localStorage.setItem("prodID", id);
+    window.location = "product-info.html"
+}
+
 fetch (PRODUCT_INFO_API)
 .then(function(response) {
 return response.json()
@@ -156,5 +162,21 @@ return response.json()
         }
 
     });
+
+    let prodRelacionado = "";
+    for (let prodRel of data.relatedProducts) {
+        prodRelacionado += `
+        <div class="col-md-4">
+            <div onclick="setProdID(${prodRel.id})" class="card mb-4 shadow-sm custom-card cursor-active">
+            <img class="bd-placeholder-img card-img-top" src="${prodRel.image}"
+                alt="Imgagen representativa del producto relacionado '${prodRel.name}'.">
+            <div class="card-body">
+                <p class="card-text">${prodRel.name}</p>
+            </div>
+            </div>
+        </div>
+        `
+    }
+    document.getElementById("productosRelacionados").innerHTML += prodRelacionado;
 
 });
