@@ -36,6 +36,7 @@
     </div>
   </nav>
   <main>
+    <form action="#" method="get" class="row mt-4 needs-validation" novalidate></form>
     <div class="container">
       <div class="text-center p-4">
         <h2>Carrito de compras</h2>
@@ -74,23 +75,69 @@
       <h4 class="mb-3">Dirección de envío</h4>
         <div class="row">
           <div class="mb-3 col-8">
-            <label class="form-control-label" for="calleEnvio">Calle</label>
-            <input class="form-control" id="calleEnvio">
+            <label class="form-control-label" for="streetRecipient">Calle</label>
+            <input class="form-control" id="streetRecipient">
+            <div class="invalid-feedback">
+              Ingresa una calle
+            </div>
           </div>
           <div class="mb-3 col-4">
-            <label class="form-control-label" for="numeroEnvio">Número</label>
-            <input class="form-control" id="numeroEnvio">
+            <label class="form-control-label" for="numberRecipient">Número</label>
+            <input class="form-control" id="numberRecipient">
+            <div class="invalid-feedback">
+              Ingresa un número
+            </div>
           </div>
         </div>
         <div class="row">
           <div class="mb-3 col-8">
-            <label class="form-control-label" for="esquinaEnvio">Esquina</label>
-            <input class="form-control" id="esquinaEnvio">
+            <label class="form-control-label" for="cornerRecipient">Esquina</label>
+            <input class="form-control" id="cornerRecipient">
+            <div class="invalid-feedback">
+              Ingresa una esquina
+            </div>
           </div>
         </div>
         <hr></hr>
+        <h4 class="mb-3">Costos</h4>
+        <div class="conteiner">
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Subtotal</h6>
+                <small class="text-muted">Costo unitario del producto por cantidad</small>
+              </div>
+              <span class="text-muted" id="subtotalText">-</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Costo de envío</h6>
+                <small class="text-muted">Según el tipo de envío</small>
+              </div>
+              <span class="text-muted" id="shippingCostText">-</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total ($)</span>
+              <strong id="totalCostCartText">-</strong>
+            </li>
+          </ul>
       </div>
+      <hr></hr>
+      <h4 class="mb-3">Forma de pago</h4>
+      <div class="row">
+        <p>Transferencia bancaria<button type="button" class="m-1 btn btn-link" data-bs-toggle="modal"
+          data-bs-target="#wayToPay">Seleccionar</button></p>
+          <div class="invalid-feedback">
+            Debe seleccionar una forma de pago
+          </div>  
+
+
+        <button class="btn btn-primary" type="submit" onclick="validityForm()">Finalizar compra</button>
       
+      
+      </div>
+      </div>
+    </form>
   </main>
 
   <footer class="text-muted">
@@ -111,6 +158,58 @@
       <div></div>
     </div>
   </div>
+
+  <div class="modal fade" id="wayToPay" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Forma de pago</h5>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="custom-control custom-radio">
+              <input id="creditcardRadio" name="publicationType" type="radio" class="custom-control-input" checked=""
+                required="">
+              <label class="custom-control-label" for="creditcardRadio">Tarjeta de crédito</label>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-4 col-sm-6">
+                <label for="numberCardRecipient" class="col-form-label">Número de tarjeta</label>
+                <input type="text" class="form-control" id="numberCardRecipient">
+              </div>
+                <div class="col-md-4 ml-auto">  
+                <label for="securityCodeRecipient" class="col-form-label">Código de seg</label>
+                <input type="text" class="form-control" id="securityCodeRecipient">
+              </div>
+            </div>
+              <div class="row">
+                <div class="col-4 col-sm-6">
+                  <label for="expirationRecipient" class="col-form-label">Vencimiento (MM/AA)</label>
+                  <input type="text" class="form-control" id="expirationRecipient">    
+              </div>
+              <div class="custom-control custom-radio">
+                <input id="bancTransferRadio" name="publicationType" type="radio" class="custom-control-input" checked=""
+                  required="">
+                <label class="custom-control-label" for="bancTransferRadio">Transferencia bancaria</label>
+              </div>
+            </div>
+              <hr>
+              <div class="row">
+              <div class="col-4 col-sm-6">
+                <label for="numberCardRecipient" class="col-form-label">Número de tarjeta</label>
+                <input type="text" class="form-control" id="numberCardRecipient">
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+  </div>
+</div>
+</div>
+</div>
+
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
